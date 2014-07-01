@@ -5,8 +5,10 @@ The is grok-Pattern Example for Tomcat Log
 
 한국형 Tomcat Log 출력 양식에 맞게 Grok Pattern을 추가함 
 
-The Tomcat log format in this example is a bit more mixed, with a combination of Tomcat’s SimpleFormatter and a customized Log4j conversion  ("%d{yyyy-MM-dd HH:mm:ss,SSS} | %DEBUG | %CLASS(LINE) - %MESSAGE).
-
+The Tomcat log format in this example is a bit more mixed, with a combination of Tomcat’s SimpleFormatter and a customized Log4j conversion 
+```
+ ("%d{yyyy-MM-dd HH:mm:ss,SSS} | %DEBUG | %CLASS(LINE) - %MESSAGE).
+```
 
 
 
@@ -42,7 +44,8 @@ Here’s an example of the combined log: (Korea Style)
 =====
 /logstash1.4.2/pattern 
 패턴 화일 추가 : tomcat
-# (300)
+
+```
 JAVA_LOC (?:(?<=\()[0-9.]+)
 
 # ,269 .269
@@ -53,6 +56,7 @@ TOMCAT_DATESTAMP 20%{YEAR}-%{MONTHNUM}-%{MONTHDAY} %{HOUR}:?%{MINUTE}(?::?%{SECO
 
 # 2014-01-09 20:03:28,269   ERROR - com.example.service.ExampleService(30) | something compeletely unexpected happened...
 TOMCATLOG %{TOMCAT_DATESTAMP} %{LOGLEVEL:level} - %{JAVACLASS:class}\(%{JAVA_LOC:line}\) \| %{JAVALOGMESSAGE:logmessage}
-
+```
+ 
  
 
