@@ -28,9 +28,8 @@ https://github.com/elasticsearch/logstash/blob/master/patterns/grok-patterns
 
 Usage
 =====
-설치
-/logstash1.4.2/pattern 
-패턴 화일 생성 : tomcat
+* 패턴 위치 : /logstash1.4.2/pattern 
+* 패턴 화일 생성 : tomcat
 
 Here’s an example of the combined log: (Korea Style)
 ```
