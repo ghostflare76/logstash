@@ -3,7 +3,8 @@
 
 The is grok-Pattern Example for Tomcat Log 
 
-한국형 Tomcat Log 출력 양식에 맞게 Grok Pattern을 추가함 
+* 한국형 Tomcat Log 출력 양식에 맞게 Grok Pattern을 추가함 
+* Logstash Multiline Tomcat  Log Parsing 추가 
  
 ```
 * TIMESTAMP : yyyy-MM-dd HH:mm:ss.SSS
