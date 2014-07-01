@@ -14,43 +14,33 @@ The Tomcat log format in this example is a bit more mixed, with a combination of
 
 Requirements 
 =========
-logstash 1.4.2 
-
+logstash 1.4.2 (current release version)
 
 This cookbook has been tested together with the following cookbooks, see the grok-atterns for more details
 https://github.com/elasticsearch/logstash/blob/master/patterns/grok-patterns
 
 
-
-
 패턴 화일
 =====
 /logstash1.4.2/pattern 
-패턴 화일 추가 : tomcat
+패턴 화일 생성 : tomcat
 
 ```
+# 코드 자리수 1008
 JAVA_LOC (?:(?<=\()[0-9.]+)
-
-# ,269 .269
-SECOND (?:(?:[0-5]?[0-9]|60)(?:[:.,][0-9]+)?)
 
 # 2014-01-09 20:03:28,269 
 TOMCAT_DATESTAMP 20%{YEAR}-%{MONTHNUM}-%{MONTHDAY} %{HOUR}:?%{MINUTE}(?::?%{SECOND})
 
 # 2014-01-09 20:03:28,269   ERROR - com.example.service.ExampleService(30) | something compeletely unexpected happened...
 TOMCATLOG %{TOMCAT_DATESTAMP} %{LOGLEVEL:level} - %{JAVACLASS:class}\(%{JAVA_LOC:line}\) \| %{JAVALOGMESSAGE:logmessage}
-```
- 
-it will produce the follwing log pattern 
-
-
+``` 
 
 Here’s an example of the combined log: (Korea Style)
 ```
 2014-06-30 15:07:58.128 DEBUG - MainClientExec.shouldCloseConnection(1008) | Connection can be kept alive indefinitely
 ```
-
-출력형태
+it will produce the follwing log pattern 
 ``` 
        "message" => "2014-07-01 09:27:29.392 DEBUG - HttpMethodBase.shouldCloseConnection(1008) | Connection can be kept alive indefinitely
       "@version" => "1",
