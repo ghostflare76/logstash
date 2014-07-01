@@ -22,20 +22,21 @@ Requirements
 logstash 1.4.2 (current release version)
 
 This cookbook has been tested together with the following cookbooks, see the grok-atterns for more details
+
 https://github.com/elasticsearch/logstash/blob/master/patterns/grok-patterns
 
 
-패턴 화일
+Usage
 =====
+설치
 /logstash1.4.2/pattern 
 패턴 화일 생성 : tomcat
-
 
 Here’s an example of the combined log: (Korea Style)
 ```
 2014-06-30 15:07:58.128 DEBUG - MainClientExec.shouldCloseConnection(1008) | Connection can be kept alive indefinitely
 ```
-it will produce the follwing log pattern 
+the  event will have a few extra fields in it:
 ``` 
        "message" => "2014-07-01 09:27:29.392 DEBUG - HttpMethodBase.shouldCloseConnection(1008) | Connection can be kept alive indefinitely
       "@version" => "1",
