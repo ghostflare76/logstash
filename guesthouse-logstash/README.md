@@ -4,13 +4,18 @@
 The is grok-Pattern Example for Tomcat Log 
 
 한국형 Tomcat Log 출력 양식에 맞게 Grok Pattern을 추가함 
-
-The Tomcat log format in this example is a bit more mixed, with a combination of Tomcat’s SimpleFormatter and a customized Log4j conversion 
+ 
 ```
- ("%d{yyyy-MM-dd HH:mm:ss,SSS} | %DEBUG | %CLASS(LINE) - %MESSAGE).
-```
+* TIMESTAMP : yyyy-MM-dd HH:mm:ss.SSS
+* DEBUGLEVEL : DEBUG,INFO,WARN,ERROR,...
+* CLASS : JAVA CLASS 
+* LINE : CLASS LINE 
+* MESSAGE : TOMCAT DETAIL MESSAGE 
 
+The Tomcat log format in this example is a bit more mixed with a combination of Tomcat’s SimpleFormatter and a customized Log4j 
 
+ %{TIMESTAMP} %{DEBUGLEVEL} - %{CLASS}(${LINE}) | %MESSAGE
+ ```
 
 Requirements 
 =========
@@ -25,16 +30,6 @@ https://github.com/elasticsearch/logstash/blob/master/patterns/grok-patterns
 /logstash1.4.2/pattern 
 패턴 화일 생성 : tomcat
 
-```
-# 코드 자리수 1008
-JAVA_LOC (?:(?<=\()[0-9.]+)
-
-# 2014-01-09 20:03:28,269 
-TOMCAT_DATESTAMP 20%{YEAR}-%{MONTHNUM}-%{MONTHDAY} %{HOUR}:?%{MINUTE}(?::?%{SECOND})
-
-# 2014-01-09 20:03:28,269   ERROR - com.example.service.ExampleService(30) | something compeletely unexpected happened...
-TOMCATLOG %{TOMCAT_DATESTAMP} %{LOGLEVEL:level} - %{JAVACLASS:class}\(%{JAVA_LOC:line}\) \| %{JAVALOGMESSAGE:logmessage}
-``` 
 
 Here’s an example of the combined log: (Korea Style)
 ```
