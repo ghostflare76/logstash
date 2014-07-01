@@ -21,24 +21,7 @@ This cookbook has been tested together with the following cookbooks, see the gro
 https://github.com/elasticsearch/logstash/blob/master/patterns/grok-patterns
 
 
-## Example
-Here’s an example of the combined log: (Korea Style)
 
-2014-06-30 15:07:58.128 DEBUG - MainClientExec.shouldCloseConnection(1008) | Connection can be kept alive indefinitely
-2014-06-30 15:07:58.124 DEBUG - Wire.wire(72) | http-outgoing-0 << "HTTP/1.1 200 OK[\r][\n]"
-
-
-출력형태 
-       "message" => "2014-07-01 09:27:29.392 DEBUG - HttpMethodBase.shouldCloseConnection(1008) | Connection can be kept alive indefinitely
-      "@version" => "1",
-    "@timestamp" => "2014-07-01T01:14:27.520Z",
-          "type" => "accountweb",
-          "host" => "NP-ACCWEBL-00",
-          "path" => "/home/archidev/sw/available/logstash-1.4.2/conf/http.log",
-         "level" => "DEBUG",
-         "class" => "HttpMethodBase.shouldCloseConnection",
-          "line" => "1008",
-    "logmessage" => "Connection can be kept alive indefinitely"
 
 패턴 화일
 =====
@@ -58,5 +41,25 @@ TOMCAT_DATESTAMP 20%{YEAR}-%{MONTHNUM}-%{MONTHDAY} %{HOUR}:?%{MINUTE}(?::?%{SECO
 TOMCATLOG %{TOMCAT_DATESTAMP} %{LOGLEVEL:level} - %{JAVACLASS:class}\(%{JAVA_LOC:line}\) \| %{JAVALOGMESSAGE:logmessage}
 ```
  
- 
+it will produce the follwing log pattern 
 
+
+
+Here’s an example of the combined log: (Korea Style)
+```
+2014-06-30 15:07:58.128 DEBUG - MainClientExec.shouldCloseConnection(1008) | Connection can be kept alive indefinitely
+```
+
+출력형태
+``` 
+       "message" => "2014-07-01 09:27:29.392 DEBUG - HttpMethodBase.shouldCloseConnection(1008) | Connection can be kept alive indefinitely
+      "@version" => "1",
+    "@timestamp" => "2014-07-01T01:14:27.520Z",
+          "type" => "accountweb",
+          "host" => "NP-ACCWEBL-00",
+          "path" => "/home/archidev/sw/available/logstash-1.4.2/conf/http.log",
+         "level" => "DEBUG",
+         "class" => "HttpMethodBase.shouldCloseConnection",
+          "line" => "1008",
+    "logmessage" => "Connection can be kept alive indefinitely" 
+```
